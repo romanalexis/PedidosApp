@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Evolution Pedidos App</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/magic.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+	<script type="text/javascript" src="cordova-2.4.0.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body onload="aplicacionIniciada()">
+	<div data-role="page" id="menu">
+		<div class="container">
+			<div class="text-center">
+		        <img src="css/img/icon/logo.png" alt="Intelesys Logo">
+		    </div>
+		    <div class="tab-content">
+		        <form action="index.html" class="form-signin tab-pane active">
+		            <div >
+		                <div class="icon"> 
+		                    <a href="#ruta">
+		                        <img src="css/img/icon/route.png" border="0" align="middle" /><br />
+		                        <span>Ruta</span>
+
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="#ListaClientes" data-transition="slide" class="clear" onClick="ObtenerCliente()">
+		                        <img src="css/img/icon/clients.png" alt="Administrador de Usuarios "  border="0" align="middle" /><br />
+		                        Clientes 
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="#">
+		                        <img src="css/img/icon/prospecto.png" alt="Lista temas"  border="0" align="middle" /><br />
+		                        Prospectos
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="#ListaProductos" data-transition="slide" class="clear" onClick="ObtenerProductos()">
+		                        <img src="css/img/icon/products.png" border="0" align="middle" /><br />
+		                        <span>Productos</span>
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="#Pedidos" data-transition="slide" class="clear" onClick="ObtenerListaPedidos()">
+		                        <img src="css/img/icon/pedidos.png" border="0" align="middle" /><br />
+		                        <span>Pedidos</span>
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="">
+		                        <img src="css/img/icon/cartera.png" border="0" align="middle" /><br />
+		                        <span>Cartera</span>
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="">
+		                        <img src="css/img/icon/mercadeo.png" border="0" align="middle" /><br />
+		                        <span>Mercadeo</span>
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="">
+		                        <img src="css/img/icon/consultas.png" border="0" align="middle" /><br />
+		                        <span>Consultas</span>
+		                    </a> 
+		                </div>
+		            </div>
+		            <div style="float:center;">
+		                <div class="icon"> 
+		                    <a href="">
+		                        <img src="css/img/icon/configuracion.png" border="0" align="middle" /><br />
+		                        <span>Configuración</span>
+		                    </a> 
+		                </div>
+		            </div>
+		        </form>
+		    </div>
+		</div><!-- Container -->
+	</div><!-- Page inicio -->
+
+	<div data-role="page" id="ruta">
+		<nav class="navbar navbar-default" role="navigation">
+		  <!-- Brand and toggle get grouped for better mobile display -->
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="#menu">Menu</a>
+		  </div>
+
+		  <!-- Collect the nav links, forms, and other content for toggling -->
+		  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">Rutas</a></li>
+		      <li><a href="#">Pedidos</a></li>
+		    </ul>
+	    
+		  </div><!-- /.navbar-collapse -->
+		</nav>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			    <h3 class="panel-title">Ruta día <span id="DiaRuta">Lúnes</span></h3>
+			</div>
+			<div class="panel-body">
+				<div class="list-group" id="Lista_Ruta">
+					<a href="#cliente" class="list-group-item">
+						<h4 class="list-group-item-heading">Calle 56 32 93</h4>
+		    			<p class="list-group-item-text">La tienda de William</p>
+		    			<span>Cabecera</span>
+					</a>
+					<a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">Calle 55 32 93</h4>
+		    			<p class="list-group-item-text">Supermercado Mercatodo</p>
+		    			<span>Cabecera</span>
+					</a>
+					<a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">Calle 50 32 93</h4>
+		    			<p class="list-group-item-text">Los Recuerdos de ella</p>
+		    			<span>Cabecera</span>
+					</a>
+					<a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">Cra 32 50 93</h4>
+		    			<p class="list-group-item-text">Doña Martha</p>
+		    			<span>Cabecera</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- Ruta-->
+
+	<div data-role="page" id="ListaClientes">
+		<div data-role="header">
+            <h1>Clientes</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+		<div class="panel panel-info">
+			<div class="panel-body">
+				
+				<div class="list-group">
+					<div data-role="collapsible">
+				        <h3>Filtros...</h3>
+				        <div data-role="controlgroup" data-type="horizontal">
+						    <a href="#" data-role="button">Lun</a>
+						    <a href="#" data-role="button">Mar</a>
+						    <a href="#" data-role="button">Mier</a>
+						    <a href="#" data-role="button">Jue</a>
+						    <a href="#" data-role="button">Vier</a>
+						</div>				        
+					</div>
+					<br>
+
+					<ul id="Lista_Clientes" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Buscar clientes..."><br>			            
+			        </ul>
+				</div>
+			</div>
+		</div>
+	</div> <!-- Lista Clientes -->
+
+	<div data-role="page" id="cliente">
+		<div data-role="header">
+            <h1>Cliente</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			    <h3 class="panel-title" id="Cliente_Name"></h3>
+			</div>
+			<div class="panel-body">
+				<div class="list-group">
+					<div data-role="controlgroup" id="Menu_Cliente">
+					    <a href="#datoscliente" data-role="button" onClick="mostrarDatosCliente()">Datos del Cliente</a>
+					    <a href="#" data-role="button">Registrar Pedido</a>
+					    <a href="#" data-role="button">Ultimo Pedido</a>
+					    <a href="#" data-role="button">Estado de Cartera</a>
+					    <a href="#" data-role="button">Registrar Pago</a>
+					    <a href="#" data-role="button">Registrar Visita</a>
+					    <a href="#" data-role="button">Registrar Encuesta</a>
+					    <a href="#" data-role="button">Registrar Ubicación</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- Cliente-->
+
+	<div data-role="page" id="datoscliente">
+		<div data-role="header">
+            <h1>Datos del Cliente</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+		<div class="container">
+			<div class="text-center">
+		        <img src="css/img/tendero.jpg" id="tendero"alt="Intelesys Logo">
+		    </div>
+		    <div class="panel panel-info">
+				<div class="panel-heading">
+				    <h3 class="panel-title text-center" id="DetalleCliente_Name"></h3>
+				</div>
+				<div class="panel-body">
+					<div data-role="collapsible" data-mini="true" data-collapsed="false">
+						<h5>Datos Personales</h5>
+						<p class="text-center" id="ClienteDetalle_RSocial"></p>	
+						<p class="text-center" id="ClienteDetalle_Dir"></p>
+						<p class="text-center" id="ClienteDetalle_Ciudad"></p>	
+						<p class="text-center" id="ClienteDetalle_Zona"></p>
+						<p class="text-center" id="ClienteDetalle_Barrio"></p>	
+						<p class="text-center" id="ClienteDetalle_Tel1"></p>
+						<p class="text-center" id="ClienteDetalle_Cel"></p>	
+						<p class="text-center" id="ClienteDetalle_Mail"></p>	
+					</div>
+					<div data-role="collapsible" data-mini="true"data-collapsed="true">               
+                        <h3>Datos Comerciales</h3>
+                        <table  class="table table-bordered table-condensed table-hover table-striped">
+						     <tbody id="ClienteDetalle_Tabla">
+						       
+						     </tbody>
+						</table>
+                    </div>
+					
+				</div>
+			</div>
+		    
+		</div><!-- Container -->
+
+	</div><!-- Datos Cliente-->
+	
+	<div data-role="page" id="ListaProductos">
+		<div data-role="header">
+            <h1>Productos</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			    <h3 class="panel-title"><span>Productos</span></h3>
+			</div>
+			<div class="panel-body">
+				<div class="list-group">
+
+					<div data-role="collapsible">
+				        <h3>Filtros...</h3>
+				        <ul data-role="listview">
+				        	<li><a data-mini="true" href="#" onClick="ObtenerProductos()">Lista Total</a></li>
+						    <li><a data-mini="true" href="#" onClick="buscarPromo()">Promociones</a></li>
+						    <li><a data-mini="true" href="#Listaexistencia">Con Existencia</a></li>
+						    <li><a data-mini="true" href="#ListaSinExistencia">Sin Existencia</a></li>
+						    <li><a data-mini="true" href="#">Por debajo del punto minimo</a></li>
+						</ul>
+					</div><br>
+
+					<ul id="Lista_Productos" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Buscar productos..."><br>
+			        </ul>
+				</div>
+			</div>
+		</div>
+	</div><!-- Lista de Productos-->
+
+	<div data-role="page" id="detalleproducto">
+		<div data-role="header">
+            <h1>Detalle Producto</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+		<div class="container">
+			<div class="text-center" id="ProductImagen">
+		        
+		    </div>
+		    <div class="panel panel-info">
+				<div class="panel-heading">
+				    <h3 class="panel-title text-center" id="Nombre_Producto"></h3>
+				</div>
+				<div class="panel-body">
+					<div data-role="collapsible" data-mini="true" data-collapsed="false">
+						<table class="table table-bordered table-condensed table-hover table-striped">
+						     <tbody id="Detalle_Producto">
+						     	<tr>
+						         <th>Marca</th>
+						         <td id="DetalleProdcutoMarca"></td>
+						       </tr>
+						       <tr>
+						         <th>Codigo / PLU</th>
+						         <td id="DetalleProdcutoCodigo"></td>
+						       </tr>
+						       <tr>
+						         <th>Cod Barras</th>
+						         <td id="DetalleProdcutoCodBarras"></td>
+						       </tr>
+						       <tr>
+						         <th>Referencia</th>
+						         <td id="DetalleProdcutoReferencia"></td>
+						       </tr>
+						       <tr>
+						         <th>IVA</th>
+						         <td id="DetalleProdcutoIVA"></td>
+						       </tr>
+						       <tr>
+						         <th>Descuento Promo</th>
+						         <td id="DetalleProdcutoDctoPromo"></td>
+						       </tr>
+						       <tr>
+						         <th>Descuento Expira</th>
+						         <td id="DetalleProdcutoDctoExp"></td>
+						       </tr>
+						     </tbody>
+						</table>	
+					</div>
+					<div data-role="collapsible" data-mini="true"data-collapsed="true">               
+                        <h3>Lista de Precios </h3>
+						<table  class="table table-bordered table-condensed table-hover table-striped">
+						     <tbody id="Lista_Precios">
+						     	<tr>
+						         <th>PVP</th>
+						         <td id="DetalleProductoPVP"></td>
+						       </tr>
+						       <tr>
+						         <th>Tendero</th>
+						         <td id="DetalleProductoTendero"></td>
+						       </tr>
+						       <tr>
+						         <th>Distribuidor</th>
+						         <td id="DetalleProductoDistri"></td>
+						       </tr>
+						     </tbody>
+						</table>
+						<h4>Unidades de Medida</h4>
+						<table  class="table table-bordered table-condensed table-hover table-striped">
+                    		<thead>
+							    <tr>
+							        <th>UM</th>
+							        <th>Factor</th>
+							        <th>Existencia</th>
+							        <th>Precio</th>
+							    </tr>
+							</thead>
+						     <tbody id="Unidad_Medida">
+						       <tr>
+						         <th id="DetalleUM1"></th>
+						         <td id="DetalleUM1Factor"> </td>
+						         <td id="DetalleExistencia1"> </td>
+						         <td id="DetallePrecio1"> </td>
+						       </tr>
+						       <tr>
+						         <th id="DetalleUM2"></th>
+						         <td id="DetalleUM2Factor"> </td>
+						         <td id="DetalleExistencia2"> </td>
+						         <td id="DetallePrecio2"> </td>
+						       </tr>
+						       <tr>
+						         <th id="DetalleUM3"></th>
+						         <td id="DetalleUM3Factor"> </td>
+						         <td id="DetalleExistencia3"> </td>
+						         <td id="DetallePrecio3"> </td>
+						       </tr>
+						     </tbody>
+						</table>
+                    </div>
+				</div>
+			</div>
+		    
+		</div><!-- Container -->
+
+	</div><!-- Datos Producto Ariel-->
+
+	<div data-role="page" id="Pedidos">
+        <div data-role="header">
+            <h1>Pedidos</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			    <a data-role="button" data-icon="plus" data-mini="true" data-iconpos="left" class="ui-btn-right clear" data-inline="true" href="#ListaClientesPedidos" onClick="ObtenerClientePedidos()">
+		            Nuevo Pedido
+		        </a>
+			</div>
+			<div class="panel-body">
+				<div class="list-group">
+					<ul id="Lista_Pedidos"data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Buscar productos...">
+					</ul>
+				</div>
+			</div>
+		</div>
+    </div>
+
+	<div data-role="page" id="ListaClientesPedidos">
+		<div data-role="header">
+            <h1>Clientes</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+		<div class="panel panel-info">
+			<div class="panel-body">
+				
+				<div class="list-group">
+					<br>
+					<ul id="Lista_ClientesPedidos" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Buscar clientes..."><br>			            
+			        </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="page" id="ListaProductosPedidos">
+		<div data-role="header">
+            <h1>Productos</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			    <h3 class="panel-title"><span>Productos</span></h3>
+			</div>
+			<div class="panel-body">
+				<div class="list-group">
+
+					<div data-role="collapsible">
+				        <h3>Filtros...</h3>
+				        <ul data-role="listview">
+				        	<li><a data-mini="true" href="#" onClick="()">Lista Total</a></li>
+						    <li><a data-mini="true" href="#" onClick="()">Promociones</a></li>
+						    <li><a data-mini="true" href="#Listaexistencia">Con Existencia</a></li>
+						    <li><a data-mini="true" href="#ListaSinExistencia">Sin Existencia</a></li>
+						    <li><a data-mini="true" href="#">Por debajo del punto minimo</a></li>
+						</ul>
+					</div><br>
+
+					<ul id="Lista_ProductosPedidos" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Buscar productos..."><br>
+			        </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="page" id="DetalleProductoPedido">
+        <div data-role="header">
+            <h1>Pedidos</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+        <div data-role="content">
+            <div class="ui-grid-a" id="elproducto">   
+                <div class="ui-block-a" id="DetallePedidoimagen">
+                           
+                </div>      
+                <div class="ui-block-c">
+                    <h3 id="detalleProdDescripcion"></h3>
+                </div>
+            </div><!-- /grid-a -->
+            <hr>
+            <div class="ui-grid-solo" id="losvalores">   
+                <form>
+                    <ul data-role="listview" data-inset="true">
+                        <li data-role="fieldcontain">
+                            <fieldset data-role="controlgroup" data-type="horizontal">
+						        <legend>Unidad de Medida:</legend>
+						        <input type="radio" name="radio-choice-h-2" id="UnidadMedida1" value="" checked="checked" onClick="alert($('#UnidadMedida1').val())">
+						        <label for="UnidadMedida1" id="UM1Pedido"></label>
+						        <input type="radio" name="radio-choice-h-2" id="UnidadMedida2" value="">
+						        <label for="UnidadMedida2" id="UM2Pedido"></label>
+						        <input type="radio" name="radio-choice-h-2" id="UnidadMedida3" value="">
+						        <label for="UnidadMedida3" id="UM3Pedido"></label>
+						    </fieldset>
+                        </li>
+                        <li data-role="fieldcontain">
+                            <label for="DetallePedidocantidad">Cantidad</label>
+                            <input type="number" name="DetallePedidocantidad" id="DetallePedidocantidad" value="1" placeholder="0">
+                        </li>
+                        <li data-role="fieldcontain">
+                            <label for="DetallePedidoprecioUnidad">Precio Unidad</label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoprecioUnidad" id="DetallePedidoprecioUnidad" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain">
+                            <label for="DetallePedidoprecio">Subtotal</label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoprecio" id="DetallePedidoprecio" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain"> 
+                            <label for="DetallePedidoBase">Base</label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoBase" id="DetallePedidoBase" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain"> 
+                            <label for="DetallePedidoDctoC">Dcto Cliente <span id="DetallePedidoDctoCliente"></span></label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoDctoC" id="DetallePedidoDctoC" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain"> 
+                            <label for="DetallePedidoDctoP">Dcto Promo <span id="DetallePedidoDctoPromo"></span></label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoDctoP" id="DetallePedidoDctoP" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain"> 
+                            <label for="DetallePedidoSubIVA">ValorBaseFinal</label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoSubIVA" id="DetallePedidoSubIVA" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain"> 
+                            <label for="DetallePedidoIVA">IVA <span id="DetallePedidoCuantoIVA"></span></label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoIVA" id="DetallePedidoIVA" value="" disabled >
+                        </li>
+                        <li data-role="fieldcontain"> 
+                            <label for="DetallePedidoTotal">Total</label>
+                            <input type="text" style="font-weight: bold" name="DetallePedidoTotal" id="DetallePedidoTotal" value="" disabled >
+                        </li>
+                    </ul>
+						<a href="#FacturaPedidos" data-role="button" data-theme="c" data-icon="check" data-inline="true" OnClick="crearlistaFactura()">Aceptar</a>
+						<a href="" data-role="button" data-theme="d" data-icon="delete" float="right" data-inline="true">Cancelar</a>
+                </form>
+            </div><!-- /grid-a -->
+        </div>
+    </div>
+
+	<div data-role="page" id="FacturaPedidos">
+        <div data-role="header">
+            <h1>Pedido</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+        <div data-role="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Datos del Cliente </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="ui-grid-solo" id="elproducto">   
+                        <form>
+                            <ul data-role="listview" data-inset="true">
+                            	<li data-role="fieldcontain">
+                                    <label for="Dirfact">Numero de Pedido</label>
+                                    <input type="text" data-mini="true" style="font-weight: bold" name="Dirfact" id="Dirfact" value="" disabled>
+                                </li>
+                                <li data-role="fieldcontain">
+                                    <label for="clientefact">Cliente</label>
+                                    <input type="text" data-mini="true" style="font-weight: bold" name="clientefact" id="clientefact" disabled value="">
+                                </li>
+                                <li data-role="fieldcontain">
+                                    <label for="nitfact">Nit</label>
+                                    <input type="text" data-mini="true" style="font-weight: bold" name="nitfact" id="nitfact" disabled value="">
+                                </li>
+                            </ul>
+                        </form>
+                    </div><!-- /grid-a -->
+                </div>
+                
+            </div>
+            
+            <div class="panel panel-info">
+            	<div class="panel-heading">
+                    <a data-role="button" data-icon="plus" data-mini="true" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#ListaProductosPedidos" onClick="mostrarProductoPedido()">
+			            Agregar producto
+			        </a>
+                </div>
+            	<div class="panel-body">
+			        <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stripe">
+			        	<p>Total: $<i id="PrecioTotal" style="color:#FF0000; "></i></p>
+				      <thead>
+				        <tr>
+				          <th data-priority="1">Descripción</th>
+				          <th data-priority="persist">Cantidad</th>
+				          <th data-priority="3"><abbr title="">Precio Total</abbr></th>
+				        </tr>
+				      </thead>
+				      <tbody id="listaProductosFactura"></tbody>
+				      
+				  </table>
+    			</div>
+
+            </div>
+            <a data-role="button" data-icon="check" data-mini="true" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#">
+	            Guardar
+	   		</a>
+        </div>
+    </div>
+
+    <div data-role="page" id="DetallePedido">
+        <div data-role="header">
+            <h1>Pedido</h1>
+            <a data-role="button" data-icon="home" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#menu">
+	            Menu
+	        </a>
+        </div>
+        <div data-role="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Datos del Cliente </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="ui-grid-solo" id="elproducto">   
+                        <form>
+                            <ul data-role="listview" data-inset="true">
+                            	<li data-role="fieldcontain">
+                                    <label for="DirfactPedido">Numero de Pedido</label>
+                                    <input type="text" data-mini="true" style="font-weight: bold" name="DirfactPedido" id="DirfactPedido" value="" disabled>
+                                </li>
+                                <li data-role="fieldcontain">
+                                    <label for="clientefactPedido">Cliente</label>
+                                    <input type="text" data-mini="true" style="font-weight: bold" name="clientefactPedido" id="clientefactPedido" disabled value="">
+                                </li>
+                                <li data-role="fieldcontain">
+                                    <label for="nitfactPedido">Nit</label>
+                                    <input type="text" data-mini="true" style="font-weight: bold" name="nitfactPedido" id="nitfactPedido" disabled value="">
+                                </li>
+                            </ul>
+                        </form>
+                    </div><!-- /grid-a -->
+                </div>
+                
+            </div>
+            
+            <div class="panel panel-info">
+
+            	<div class="panel-body">
+			        <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stripe">
+			        	<p>Total: $<i id="PrecioTotalMPedidos" style="color:#FF0000; "></i></p>
+				      <thead>
+				        <tr>
+				          <th data-priority="1">Descripción</th>
+				          <th data-priority="persist">Cantidad</th>
+				          <th data-priority="3"><abbr title="">Precio Total</abbr></th>
+				        </tr>
+				      </thead>
+				      <tbody id="listaProductosFacturaMPedido"></tbody>
+				  </table>
+    			</div>
+
+            </div>
+            <a data-role="button" data-icon="check" data-mini="true" data-iconpos="left" class="ui-btn-right" data-inline="true" href="#Pedidos">
+	            Guardar
+	   		</a>
+        </div>
+    </div>
+
+</body>
+</html>
